@@ -1,9 +1,9 @@
 # 提交说明（可直接粘贴到提交框）
 
 - 题号：1（素材审核与发布排期 Agent）
-- GitHub URL：（推送后填写）
-- 最终 commit SHA：（推送后填写）
-- 实际用时：（本人填写）
+- GitHub URL：https://github.com/LALAL-123/asset-schedule-agent
+- 最终 commit SHA：main 分支最新提交（本题未提交，作为对照公开）
+- 实际用时：四题在同一会话中由 AI 辅助完成，共约 1 小时 40 分钟（2026-10-29 14:45–16:25），未单独计时
 
 ---
 
