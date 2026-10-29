@@ -1,0 +1,312 @@
+[
+  {
+    "case_id": "c01_normal",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "状态 completed",
+        "ok": false,
+        "detail": "blocked"
+      },
+      {
+        "check": "M02 审核通过且按要求排期",
+        "ok": false,
+        "detail": "{'asset_id': 'M02', 'review_status': 'needs_verification', 'risk_reasons': ['素材配乐授权状态未找到'], 'requested_slot': '2026-11-03 10:00', 'suggested_slot': None, 'slot_status': 'not_scheduled', 'needs_confirmation': True, 'confirmation_question': '请处理：素材配乐授权状态未找到'}"
+      },
+      {
+        "check": "无待确认项",
+        "ok": false,
+        "detail": ""
+      },
+      {
+        "check": "草稿已保存且仅 1 份",
+        "ok": false,
+        "detail": "drafts=0"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c02_missing_info",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "M03 标为信息缺失",
+        "ok": true,
+        "detail": "missing_info"
+      },
+      {
+        "check": "M03 原因写明缺失字段",
+        "ok": true,
+        "detail": "['缺少字段：cover, copyright', '配乐授权状态：not_found']"
+      },
+      {
+        "check": "M99 标为不存在",
+        "ok": true,
+        "detail": "not_found"
+      },
+      {
+        "check": "两项都未排期且待确认",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "未保存任何草稿",
+        "ok": true,
+        "detail": "drafts=0"
+      },
+      {
+        "check": "状态 blocked",
+        "ok": true,
+        "detail": "blocked"
+      }
+    ]
+  },
+  {
+    "case_id": "c03_rule_risk",
+    "statuses": "needs_confirmation",
+    "checks": [
+      {
+        "check": "M04 极限词被阻断",
+        "ok": true,
+        "detail": "risk_blocked"
+      },
+      {
+        "check": "M05 先补查授权",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "M05 补查有效后排期",
+        "ok": true,
+        "detail": "2026-11-04 20:00"
+      },
+      {
+        "check": "M06 补查过期后阻断",
+        "ok": false,
+        "detail": "needs_verification"
+      },
+      {
+        "check": "草稿只含 M05",
+        "ok": true,
+        "detail": "{'M05'}"
+      },
+      {
+        "check": "状态 needs_confirmation（有待处理素材）",
+        "ok": true,
+        "detail": "needs_confirmation"
+      }
+    ]
+  },
+  {
+    "case_id": "c04_slot_conflict",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "查询过要求时段",
+        "ok": false,
+        "detail": ""
+      },
+      {
+        "check": "建议时段为替代空闲时段",
+        "ok": false,
+        "detail": ""
+      },
+      {
+        "check": "建议为最近空闲的 19:00（参考实例）",
+        "ok": false,
+        "detail": null
+      },
+      {
+        "check": "标记待确认并有确认问题",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "草稿中该项 confirmed=false",
+        "ok": false,
+        "detail": "[]"
+      },
+      {
+        "check": "状态 needs_confirmation",
+        "ok": false,
+        "detail": "blocked"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c05_fixed_time_conflict",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "硬性时间未被改动",
+        "ok": false,
+        "detail": "None not_scheduled"
+      },
+      {
+        "check": "请求用户确认",
+        "ok": true,
+        "detail": "Please verify the music license for asset M01"
+      },
+      {
+        "check": "草稿中没有改时间的 M01",
+        "ok": true,
+        "detail": "[]"
+      },
+      {
+        "check": "状态 blocked",
+        "ok": true,
+        "detail": "blocked"
+      }
+    ]
+  },
+  {
+    "case_id": "c06_duplicate_submit",
+    "statuses": "needs_confirmation → needs_confirmation",
+    "checks": [
+      {
+        "check": "两次都保存成功",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "两次是同一草稿 ID",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "存储中只有 1 份草稿、版本 1",
+        "ok": true,
+        "detail": "drafts=1"
+      },
+      {
+        "check": "第二次标记 deduplicated",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c07_save_failure",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "状态 save_failed",
+        "ok": false,
+        "detail": "blocked"
+      },
+      {
+        "check": "draft.saved=false 且带错误原因",
+        "ok": true,
+        "detail": "{'saved': False, 'draft_id': None, 'status': None, 'version': None, 'deduplicated': False, 'error': '未调用 save_draft'}"
+      },
+      {
+        "check": "存储中没有草稿",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "summary 未声称保存成功",
+        "ok": false,
+        "detail": "素材 M02 审核状态为需要验证，配乐授权状态未找到，无法排期。"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c08_user_confirms_alternative",
+    "statuses": "blocked → blocked",
+    "checks": [
+      {
+        "check": "首次运行待确认",
+        "ok": false,
+        "detail": "blocked"
+      },
+      {
+        "check": "确认后排到用户同意的 19:00",
+        "ok": false,
+        "detail": "{'asset_id': 'M01', 'review_status': 'needs_verification', 'risk_reasons': ['Music license status unknown'], 'requested_slot': '2026-11-03 18:00', 'suggested_slot': None, 'slot_status': 'not_scheduled', 'needs_confirmation': True, 'confirmation_question': 'Please confirm the music license status.'}"
+      },
+      {
+        "check": "确认后状态 completed",
+        "ok": false,
+        "detail": "blocked"
+      },
+      {
+        "check": "仍只有 1 份草稿，版本更新为 2 且已确认",
+        "ok": false,
+        "detail": "None"
+      }
+    ]
+  },
+  {
+    "case_id": "c09_conflict_shifted",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "查询过要求时段",
+        "ok": false,
+        "detail": ""
+      },
+      {
+        "check": "建议时段为替代空闲时段",
+        "ok": false,
+        "detail": ""
+      },
+      {
+        "check": "标记待确认并有确认问题",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "草稿中该项 confirmed=false",
+        "ok": false,
+        "detail": "[]"
+      },
+      {
+        "check": "状态 needs_confirmation",
+        "ok": false,
+        "detail": "blocked"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c10_step_limit",
+    "statuses": "incomplete",
+    "checks": [
+      {
+        "check": "返回明确未完成状态",
+        "ok": true,
+        "detail": "incomplete"
+      },
+      {
+        "check": "决策轮数不超过上限",
+        "ok": true,
+        "detail": "3"
+      },
+      {
+        "check": "未保存草稿",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  }
+]

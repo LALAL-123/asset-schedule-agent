@@ -1,0 +1,103 @@
+{
+  "title": "c04_slot_conflict：时段冲突（参考实例）：M01 要求 18:00 已占用，19:00 空闲（运行 1/1）",
+  "request": {
+    "request_id": "REQ-C04",
+    "items": [
+      {
+        "asset_id": "M01",
+        "channel": "douyin",
+        "date": "2026-11-03",
+        "time": "18:00",
+        "time_rule": "flexible"
+      }
+    ]
+  },
+  "status": "blocked",
+  "stop_reason": "model_finished",
+  "llm": "openai-compat:glm-4-flash",
+  "steps": 5,
+  "tool_calls": 3,
+  "final": {
+    "items": [
+      {
+        "asset_id": "M01",
+        "review_status": "needs_verification",
+        "risk_reasons": [
+          "Music license status unknown"
+        ],
+        "requested_slot": "2026-11-03 18:00",
+        "suggested_slot": null,
+        "slot_status": "not_scheduled",
+        "needs_confirmation": true,
+        "confirmation_question": "Please verify the music license for asset M01"
+      }
+    ],
+    "draft": {
+      "saved": false,
+      "draft_id": null,
+      "status": null,
+      "version": null,
+      "deduplicated": false,
+      "error": "未调用 save_draft"
+    },
+    "task_status": "blocked",
+    "summary": "Asset M01 requires music license verification before scheduling.",
+    "publish_status": "not_published"
+  },
+  "guard_corrections": [
+    "task_status 由 needs_confirmation 校正为 blocked"
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "type": "tool_call",
+      "tool": "read_asset",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "decision_note": "Initial asset read request for item with ID M01",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset\": {\"asset_id\": \"M01\", \"title\": \"冬季新品开箱\", \"type\": \"video\", \"caption\": \"带你看看今年冬季新品的三个细节\", \"cover\": \"covers/m01.jpg\", \"copyright\": \"owned\", \"music\": {\"track\": \"原创配乐-01\", \"license\": \"owned\"}, \"submitter\": \"运营-林\"}, \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 2,
+      "type": "tool_call",
+      "tool": "check_rules",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "decision_note": "Checking rules for asset with ID M01",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset_id\": \"M01\", \"result\": \"pass\", \"issues\": [], \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 3,
+      "type": "tool_call",
+      "tool": "lookup_license",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "decision_note": "Checking license for music track in asset with ID M01",
+      "ok": true,
+      "observation": "{\"asset_id\": \"M01\", \"track\": \"原创配乐-01\", \"status\": \"not_found\", \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 4,
+      "type": "no_tool_call",
+      "content": "素材审核与发布排期结果：\n\n- 素材ID：M01\n  - 审核状态：需要验证\n  - 风险原因：素材配乐授权状态未知（未找到）\n  - 建议时段：待定\n  - 待确认项：请核实素材配乐授权状态\n\n由于素材配乐授权状态未知，无法确定建议时段。请确认素材配乐授权状态后，再进行下一步操作。"
+    },
+    {
+      "step": 5,
+      "type": "finish",
+      "decision_note": "Finalizing the review and scheduling decision for asset with ID M01",
+      "recovered_from_text": false,
+      "status": "blocked",
+      "guard_corrections": [
+        "task_status 由 needs_confirmation 校正为 blocked"
+      ]
+    }
+  ]
+}

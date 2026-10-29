@@ -1,0 +1,113 @@
+{
+  "title": "c08_user_confirms_alternative：确认闭环：先建议 19:00 待确认；用户同意后再次提交，同一草稿更新为已确认（运行 1/2）",
+  "request": {
+    "request_id": "REQ-C08",
+    "items": [
+      {
+        "asset_id": "M01",
+        "channel": "douyin",
+        "date": "2026-11-03",
+        "time": "18:00",
+        "time_rule": "flexible"
+      }
+    ]
+  },
+  "status": "needs_confirmation",
+  "stop_reason": "model_finished",
+  "llm": "mock:scripted-policy",
+  "steps": 5,
+  "tool_calls": 4,
+  "final": {
+    "items": [
+      {
+        "asset_id": "M01",
+        "review_status": "approved",
+        "risk_reasons": [],
+        "requested_slot": "2026-11-03 18:00",
+        "suggested_slot": "2026-11-03 19:00",
+        "slot_status": "alternative_proposed",
+        "needs_confirmation": true,
+        "confirmation_question": "2026-11-03 18:00 已被 X91 占用，建议改为 2026-11-03 19:00，是否同意？"
+      }
+    ],
+    "draft": {
+      "saved": true,
+      "draft_id": "DRAFT-d4806b4c",
+      "status": "draft",
+      "version": 1,
+      "deduplicated": false,
+      "error": null
+    },
+    "task_status": "needs_confirmation",
+    "summary": "排期草稿 DRAFT-d4806b4c 已保存，未发布；待确认 1 项。",
+    "publish_status": "not_published"
+  },
+  "guard_corrections": [],
+  "trace": [
+    {
+      "step": 1,
+      "type": "tool_call",
+      "tool": "read_asset",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "decision_note": "M01 尚未读取，先获取元数据",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset\": {\"asset_id\": \"M01\", \"title\": \"冬季新品开箱\", \"type\": \"video\", \"caption\": \"带你看看今年冬季新品的三个细节\", \"cover\": \"covers/m01.jpg\", \"copyright\": \"owned\", \"music\": {\"track\": \"原创配乐-01\", \"license\": \"owned\"}, \"submitter\": \"运营-林\"}, \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 2,
+      "type": "tool_call",
+      "tool": "check_rules",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "decision_note": "M01 元数据已读取，按 R01–R04 做规则检查",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset_id\": \"M01\", \"result\": \"pass\", \"issues\": [], \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 3,
+      "type": "tool_call",
+      "tool": "query_slots",
+      "arguments": {
+        "channel": "douyin",
+        "date": "2026-11-03",
+        "time": "18:00"
+      },
+      "decision_note": "M01 审核通过，查询 2026-11-03 18:00 是否空闲",
+      "ok": true,
+      "observation": "{\"channel\": \"douyin\", \"date\": \"2026-11-03\", \"requested_time\": \"18:00\", \"available\": false, \"occupied_by\": \"X91\", \"free_slots_nearby\": [\"19:00\", \"16:00\", \"21:00\", \"15:00\"], \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 4,
+      "type": "tool_call",
+      "tool": "save_draft",
+      "arguments": {
+        "items": [
+          {
+            "asset_id": "M01",
+            "channel": "douyin",
+            "date": "2026-11-03",
+            "time": "19:00"
+          }
+        ]
+      },
+      "decision_note": "可排期素材已确定，保存为草稿",
+      "ok": true,
+      "observation": "{\"draft_id\": \"DRAFT-d4806b4c\", \"status\": \"draft\", \"version\": 1, \"deduplicated\": false, \"items\": [{\"asset_id\": \"M01\", \"channel\": \"douyin\", \"slot\": \"2026-11-03 19:00\", \"requested_slot\": \"2026-11-03 18:00\", \"confirmed\": false}], \"note\": \"已保存为草稿；未发布\", \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 5,
+      "type": "finish",
+      "decision_note": "所有素材已有结论，提交结果",
+      "recovered_from_text": false,
+      "status": "needs_confirmation",
+      "guard_corrections": []
+    }
+  ]
+}

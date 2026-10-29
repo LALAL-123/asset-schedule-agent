@@ -1,0 +1,2 @@
+{"case_id": "c05_fixed_time_conflict", "title": "硬性时间被占用：不得擅自改时间，只能请求确认", "covers": ["时段冲突", "确认边界"],
+ "request": {"request_id": "REQ-C05", "items": [{"asset_id": "M01", "channel": "douyin", "date": "2026-11-03", "time": "18:00", "time_rule": "fixed"}]}}

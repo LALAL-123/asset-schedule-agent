@@ -1,0 +1,3 @@
+{"case_id": "c09_conflict_shifted", "title": "更换占用时段：19:00 也被占用，建议须随查询结果改变", "covers": ["时段冲突"],
+ "request": {"request_id": "REQ-C09", "items": [{"asset_id": "M01", "channel": "douyin", "date": "2026-11-03", "time": "18:00", "time_rule": "flexible"}]},
+ "env": {"extra_booked": [{"channel": "douyin", "date": "2026-11-03", "time": "19:00", "asset_id": "X95"}]}}

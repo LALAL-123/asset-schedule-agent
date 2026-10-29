@@ -1,0 +1,43 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.4, pytest-9.1.1, pluggy-1.6.0 -- <本机路径>
+rootdir: <项目根目录>
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.14.1, cov-7.1.0
+collecting ... collected 33 items
+
+tests/test_core.py::test_step_limit_returns_explicit_incomplete PASSED   [  3%]
+tests/test_core.py::test_tool_call_limit_stops_run PASSED                [  6%]
+tests/test_core.py::test_finish_in_same_turn_as_tool_is_rejected PASSED  [  9%]
+tests/test_core.py::test_decision_note_is_traced_but_not_passed_to_tool PASSED [ 12%]
+tests/test_core.py::test_tool_errors_become_observations PASSED          [ 15%]
+tests/test_core.py::test_fault_plan_once_then_recovers PASSED            [ 18%]
+tests/test_core.py::test_llm_exception_returns_failed PASSED             [ 21%]
+tests/test_core.py::test_invalid_finish_is_sent_back_to_model PASSED     [ 24%]
+tests/test_core.py::test_text_reply_without_tool_is_nudged PASSED        [ 27%]
+tests/test_core.py::test_openai_compat_parses_tool_calls_and_bad_json PASSED [ 30%]
+tests/test_core.py::test_text_tool_call_is_recovered_only_with_name_and_json PASSED [ 33%]
+tests/test_core.py::test_agent_executes_recovered_text_call_and_marks_trace PASSED [ 36%]
+tests/test_domain.py::test_query_slots_reports_conflict_and_nearest_free PASSED [ 39%]
+tests/test_domain.py::test_license_lookup_changes_review_verdict PASSED  [ 42%]
+tests/test_domain.py::test_save_draft_is_idempotent_per_request PASSED   [ 45%]
+tests/test_domain.py::test_save_draft_rejects_risk_occupied_and_fixed_change PASSED [ 48%]
+tests/test_domain.py::test_guard_rejects_false_save_claim_and_unqueried_slot PASSED [ 51%]
+tests/test_domain.py::test_guard_forces_confirmation_and_scrubs_publish_claim PASSED [ 54%]
+tests/test_domain.py::test_guard_downgrades_approved_when_rules_say_risk PASSED [ 57%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c01_normal] PASSED [ 60%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c02_missing_info] PASSED [ 63%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c03_rule_risk] PASSED [ 66%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c04_slot_conflict] PASSED [ 69%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c05_fixed_time_conflict] PASSED [ 72%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c06_duplicate_submit] PASSED [ 75%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c07_save_failure] PASSED [ 78%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c08_user_confirms_alternative] PASSED [ 81%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c09_conflict_shifted] PASSED [ 84%]
+tests/test_domain.py::test_case_acceptance_with_offline_mock[c10_step_limit] PASSED [ 87%]
+tests/test_domain.py::test_guard_sends_incomplete_or_malformed_finish_back PASSED [ 90%]
+tests/test_domain.py::test_lookup_license_does_not_mislead_on_owned_or_verified_music PASSED [ 93%]
+tests/test_domain.py::test_guard_derives_slot_status_from_query_not_from_model PASSED [ 96%]
+tests/test_domain.py::test_guard_keeps_slot_from_failed_save_attempt PASSED [100%]
+
+============================= 33 passed in 0.12s ==============================

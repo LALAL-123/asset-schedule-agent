@@ -1,0 +1,3 @@
+{"case_id": "c08_user_confirms_alternative", "title": "确认闭环：先建议 19:00 待确认；用户同意后再次提交，同一草稿更新为已确认", "covers": ["时段冲突", "确认边界", "重复提交"],
+ "request": {"request_id": "REQ-C08", "items": [{"asset_id": "M01", "channel": "douyin", "date": "2026-11-03", "time": "18:00", "time_rule": "flexible"}]},
+ "runs": [{}, {"request_patch": {"user_confirmations": {"M01": "2026-11-03 19:00"}}}]}

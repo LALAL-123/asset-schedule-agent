@@ -1,0 +1,4 @@
+{"case_id": "c02_missing_info", "title": "素材信息缺失 + 素材 ID 不存在", "covers": ["素材信息缺失"],
+ "request": {"request_id": "REQ-C02", "items": [
+   {"asset_id": "M03", "channel": "douyin", "date": "2026-11-04", "time": "12:00", "time_rule": "flexible"},
+   {"asset_id": "M99", "channel": "douyin", "date": "2026-11-04", "time": "13:00", "time_rule": "flexible"}]}}

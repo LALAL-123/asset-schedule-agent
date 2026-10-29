@@ -1,0 +1,8 @@
+[
+  {"asset_id": "M01", "title": "冬季新品开箱", "type": "video", "caption": "带你看看今年冬季新品的三个细节", "cover": "covers/m01.jpg", "copyright": "owned", "music": {"track": "原创配乐-01", "license": "owned"}, "submitter": "运营-林"},
+  {"asset_id": "M02", "title": "门店探访 vlog", "type": "video", "caption": "周末去了新开的城市旗舰店", "cover": "covers/m02.jpg", "copyright": "owned", "music": {"track": "Lofi Morning", "license": "verified"}, "submitter": "运营-周"},
+  {"asset_id": "M03", "title": "用户故事合集", "type": "video", "caption": "三位用户的真实故事", "cover": null, "copyright": null, "music": {"track": "无", "license": "none"}, "submitter": "运营-林"},
+  {"asset_id": "M04", "title": "双 11 预热", "type": "video", "caption": "全网最低价，史上最强性能，错过再等一年", "cover": "covers/m04.jpg", "copyright": "owned", "music": {"track": "原创配乐-02", "license": "owned"}, "submitter": "运营-吴"},
+  {"asset_id": "M05", "title": "夜景拍摄教程", "type": "video", "caption": "三步拍出干净的城市夜景", "cover": "covers/m05.jpg", "copyright": "owned", "music": {"track": "City Lights", "license": "unverified"}, "submitter": "运营-周"},
+  {"asset_id": "M06", "title": "海边旅行混剪", "type": "video", "caption": "秋天的海边，风刚刚好", "cover": "covers/m06.jpg", "copyright": "licensed", "music": {"track": "Summer Hit", "license": "unverified"}, "submitter": "运营-吴"}
+]

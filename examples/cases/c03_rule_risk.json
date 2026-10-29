@@ -1,0 +1,5 @@
+{"case_id": "c03_rule_risk", "title": "规则风险：极限词阻断；未核验配乐补查后一通过一阻断", "covers": ["规则风险"],
+ "request": {"request_id": "REQ-C03", "items": [
+   {"asset_id": "M04", "channel": "douyin", "date": "2026-11-04", "time": "19:00", "time_rule": "flexible"},
+   {"asset_id": "M05", "channel": "douyin", "date": "2026-11-04", "time": "20:00", "time_rule": "flexible"},
+   {"asset_id": "M06", "channel": "xiaohongshu", "date": "2026-11-04", "time": "21:00", "time_rule": "flexible"}]}}

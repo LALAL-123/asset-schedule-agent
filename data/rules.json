@@ -1,0 +1,8 @@
+{
+  "rules": [
+    {"rule_id": "R01", "name": "必填信息", "level_on_fail": "missing_info", "required_fields": ["title", "caption", "cover", "copyright"], "text": "标题、文案、封面、版权归属缺一不可，缺失需运营补充"},
+    {"rule_id": "R02", "name": "广告极限词", "level_on_fail": "risk", "banned_terms": ["全网最低", "最低价", "史上最强", "最强", "第一", "100%", "国家级", "绝对"], "text": "标题与文案不得含绝对化用语"},
+    {"rule_id": "R03", "name": "画面版权", "level_on_fail": "risk", "allowed": ["owned", "licensed"], "text": "版权须为自有或已授权"},
+    {"rule_id": "R04", "name": "音乐授权", "level_on_fail": "risk", "ok": ["owned", "verified", "none"], "needs_verification": ["unverified"], "text": "音乐须为自有/已核验；未核验的须查询授权库，过期或查无即为风险"}
+  ]
+}

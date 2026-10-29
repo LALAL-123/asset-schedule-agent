@@ -1,0 +1,94 @@
+{
+  "title": "c10_step_limit：执行上限：3 轮内无法处理完 3 项素材，返回明确未完成（运行 1/1）",
+  "request": {
+    "request_id": "REQ-C10",
+    "items": [
+      {
+        "asset_id": "M04",
+        "channel": "douyin",
+        "date": "2026-11-04",
+        "time": "19:00",
+        "time_rule": "flexible"
+      },
+      {
+        "asset_id": "M05",
+        "channel": "douyin",
+        "date": "2026-11-04",
+        "time": "20:00",
+        "time_rule": "flexible"
+      },
+      {
+        "asset_id": "M06",
+        "channel": "xiaohongshu",
+        "date": "2026-11-04",
+        "time": "21:00",
+        "time_rule": "flexible"
+      }
+    ]
+  },
+  "status": "incomplete",
+  "stop_reason": "step_limit_reached",
+  "llm": "openai-compat:glm-4-flash",
+  "steps": 3,
+  "tool_calls": 2,
+  "final": {
+    "items": [
+      {
+        "asset_id": "M04",
+        "review_status": "risk_blocked"
+      },
+      {
+        "asset_id": "M05",
+        "review_status": "unchecked"
+      },
+      {
+        "asset_id": "M06",
+        "review_status": "unchecked"
+      }
+    ],
+    "draft": {
+      "saved": false,
+      "draft_id": null
+    },
+    "summary": "未完成：step_limit_reached；已执行 2 次工具调用，未完成部分需重新提交。",
+    "publish_status": "not_published",
+    "task_status": "incomplete",
+    "stop_reason": "step_limit_reached"
+  },
+  "guard_corrections": [],
+  "trace": [
+    {
+      "step": 1,
+      "type": "tool_call",
+      "tool": "read_asset",
+      "arguments": {
+        "asset_id": "M04"
+      },
+      "decision_note": "开始处理素材 M04",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset\": {\"asset_id\": \"M04\", \"title\": \"双 11 预热\", \"type\": \"video\", \"caption\": \"全网最低价，史上最强性能，错过再等一年\", \"cover\": \"covers/m04.jpg\", \"copyright\": \"owned\", \"music\": {\"track\": \"原创配乐-02\", \"license\": \"owned\"}, \"submitter\": \"运营-吴\"}, \"ok\": true}"
+    },
+    {
+      "step": 2,
+      "type": "tool_call",
+      "tool": "check_rules",
+      "arguments": {
+        "asset_id": "M04"
+      },
+      "decision_note": "检查素材 M04 的审核规则",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset_id\": \"M04\", \"result\": \"risk\", \"issues\": [{\"rule_id\": \"R02\", \"level\": \"risk\", \"detail\": \"含广告极限词：全网最低、最低价、史上最强、最强\"}], \"ok\": true}"
+    },
+    {
+      "step": 3,
+      "type": "no_tool_call",
+      "content": "素材 M04 的审核状态为：风险 blocked。风险原因为：含广告极限词：全网最低、最低价、史上最强、最强。建议时段和待确认项：无需排期，请修改素材内容。"
+    },
+    {
+      "step": 3,
+      "type": "stop",
+      "status": "incomplete",
+      "reason": "step_limit_reached"
+    }
+  ]
+}

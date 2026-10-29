@@ -1,0 +1,312 @@
+[
+  {
+    "case_id": "c01_normal",
+    "statuses": "completed",
+    "checks": [
+      {
+        "check": "状态 completed",
+        "ok": true,
+        "detail": "completed"
+      },
+      {
+        "check": "M02 审核通过且按要求排期",
+        "ok": true,
+        "detail": "{'asset_id': 'M02', 'review_status': 'approved', 'risk_reasons': [], 'requested_slot': '2026-11-03 10:00', 'suggested_slot': '2026-11-03 10:00', 'slot_status': 'as_requested', 'needs_confirmation': False, 'confirmation_question': ''}"
+      },
+      {
+        "check": "无待确认项",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "草稿已保存且仅 1 份",
+        "ok": true,
+        "detail": "drafts=1"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c02_missing_info",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "M03 标为信息缺失",
+        "ok": true,
+        "detail": "missing_info"
+      },
+      {
+        "check": "M03 原因写明缺失字段",
+        "ok": true,
+        "detail": "['缺少字段：cover, copyright']"
+      },
+      {
+        "check": "M99 标为不存在",
+        "ok": true,
+        "detail": "not_found"
+      },
+      {
+        "check": "两项都未排期且待确认",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "未保存任何草稿",
+        "ok": true,
+        "detail": "drafts=0"
+      },
+      {
+        "check": "状态 blocked",
+        "ok": true,
+        "detail": "blocked"
+      }
+    ]
+  },
+  {
+    "case_id": "c03_rule_risk",
+    "statuses": "needs_confirmation",
+    "checks": [
+      {
+        "check": "M04 极限词被阻断",
+        "ok": true,
+        "detail": "risk_blocked"
+      },
+      {
+        "check": "M05 先补查授权",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "M05 补查有效后排期",
+        "ok": true,
+        "detail": "2026-11-04 20:00"
+      },
+      {
+        "check": "M06 补查过期后阻断",
+        "ok": true,
+        "detail": "risk_blocked"
+      },
+      {
+        "check": "草稿只含 M05",
+        "ok": true,
+        "detail": "{'M05'}"
+      },
+      {
+        "check": "状态 needs_confirmation（有待处理素材）",
+        "ok": true,
+        "detail": "needs_confirmation"
+      }
+    ]
+  },
+  {
+    "case_id": "c04_slot_conflict",
+    "statuses": "needs_confirmation",
+    "checks": [
+      {
+        "check": "查询过要求时段",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "建议时段为替代空闲时段",
+        "ok": true,
+        "detail": "2026-11-03 19:00"
+      },
+      {
+        "check": "建议为最近空闲的 19:00（参考实例）",
+        "ok": true,
+        "detail": "2026-11-03 19:00"
+      },
+      {
+        "check": "标记待确认并有确认问题",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "草稿中该项 confirmed=false",
+        "ok": true,
+        "detail": "[{'asset_id': 'M01', 'channel': 'douyin', 'slot': '2026-11-03 19:00', 'requested_slot': '2026-11-03 18:00', 'confirmed': False}]"
+      },
+      {
+        "check": "状态 needs_confirmation",
+        "ok": true,
+        "detail": "needs_confirmation"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c05_fixed_time_conflict",
+    "statuses": "blocked",
+    "checks": [
+      {
+        "check": "硬性时间未被改动",
+        "ok": true,
+        "detail": "None conflict_fixed"
+      },
+      {
+        "check": "请求用户确认",
+        "ok": true,
+        "detail": "2026-11-03 18:00 是硬性时间但已被 X91 占用，可选 2026-11-03 19:00，是否同意调整？"
+      },
+      {
+        "check": "草稿中没有改时间的 M01",
+        "ok": true,
+        "detail": "[]"
+      },
+      {
+        "check": "状态 blocked",
+        "ok": true,
+        "detail": "blocked"
+      }
+    ]
+  },
+  {
+    "case_id": "c06_duplicate_submit",
+    "statuses": "needs_confirmation → needs_confirmation",
+    "checks": [
+      {
+        "check": "两次都保存成功",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "两次是同一草稿 ID",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "存储中只有 1 份草稿、版本 1",
+        "ok": true,
+        "detail": "drafts=1"
+      },
+      {
+        "check": "第二次标记 deduplicated",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c07_save_failure",
+    "statuses": "save_failed",
+    "checks": [
+      {
+        "check": "状态 save_failed",
+        "ok": true,
+        "detail": "save_failed"
+      },
+      {
+        "check": "draft.saved=false 且带错误原因",
+        "ok": true,
+        "detail": "{'saved': False, 'draft_id': None, 'status': None, 'version': None, 'deduplicated': False, 'error': '草稿存储服务不可用（注入故障）'}"
+      },
+      {
+        "check": "存储中没有草稿",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "summary 未声称保存成功",
+        "ok": true,
+        "detail": "排期建议已生成，但草稿保存失败：草稿存储服务不可用（注入故障）。未保存、未发布。"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c08_user_confirms_alternative",
+    "statuses": "needs_confirmation → completed",
+    "checks": [
+      {
+        "check": "首次运行待确认",
+        "ok": true,
+        "detail": "needs_confirmation"
+      },
+      {
+        "check": "确认后排到用户同意的 19:00",
+        "ok": true,
+        "detail": "{'asset_id': 'M01', 'review_status': 'approved', 'risk_reasons': [], 'requested_slot': '2026-11-03 18:00', 'suggested_slot': '2026-11-03 19:00', 'slot_status': 'alternative_proposed', 'needs_confirmation': False, 'confirmation_question': ''}"
+      },
+      {
+        "check": "确认后状态 completed",
+        "ok": true,
+        "detail": "completed"
+      },
+      {
+        "check": "仍只有 1 份草稿，版本更新为 2 且已确认",
+        "ok": true,
+        "detail": "[{'asset_id': 'M01', 'channel': 'douyin', 'slot': '2026-11-03 19:00', 'requested_slot': '2026-11-03 18:00', 'confirmed': True}]"
+      }
+    ]
+  },
+  {
+    "case_id": "c09_conflict_shifted",
+    "statuses": "needs_confirmation",
+    "checks": [
+      {
+        "check": "查询过要求时段",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "建议时段为替代空闲时段",
+        "ok": true,
+        "detail": "2026-11-03 16:00"
+      },
+      {
+        "check": "标记待确认并有确认问题",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "草稿中该项 confirmed=false",
+        "ok": true,
+        "detail": "[{'asset_id': 'M01', 'channel': 'douyin', 'slot': '2026-11-03 16:00', 'requested_slot': '2026-11-03 18:00', 'confirmed': False}]"
+      },
+      {
+        "check": "状态 needs_confirmation",
+        "ok": true,
+        "detail": "needs_confirmation"
+      },
+      {
+        "check": "未称已发布",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  {
+    "case_id": "c10_step_limit",
+    "statuses": "incomplete",
+    "checks": [
+      {
+        "check": "返回明确未完成状态",
+        "ok": true,
+        "detail": "incomplete"
+      },
+      {
+        "check": "决策轮数不超过上限",
+        "ok": true,
+        "detail": "3"
+      },
+      {
+        "check": "未保存草稿",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  }
+]

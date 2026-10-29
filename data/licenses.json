@@ -1,0 +1,17 @@
+{
+  "City Lights": {
+    "status": "valid",
+    "licensor": "合成音乐库A",
+    "expires": "2027-06-30"
+  },
+  "Summer Hit": {
+    "status": "expired",
+    "licensor": "合成音乐库B",
+    "expires": "2026-09-30"
+  },
+  "Lofi Morning": {
+    "status": "valid",
+    "licensor": "合成音乐库A",
+    "expires": "2027-12-31"
+  }
+}

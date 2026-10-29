@@ -1,0 +1,68 @@
+# c01_normal：正常排期：无风险素材、要求时段空闲（运行 1/1）
+
+- 模型：`openai-compat:glm-4-flash`
+- 结束状态：`blocked`（model_finished）
+- 决策轮数：5；业务工具调用：3
+
+## 输入
+
+```json
+{
+  "request_id": "REQ-C01",
+  "items": [
+    {
+      "asset_id": "M02",
+      "channel": "xiaohongshu",
+      "date": "2026-11-03",
+      "time": "10:00",
+      "time_rule": "flexible"
+    }
+  ]
+}
+```
+
+## 执行记录
+
+| 步骤 | 动作 | 参数 | 返回摘要 | 决策依据 |
+|---|---|---|---|---|
+| 1 | `read_asset` | {"asset_id": "M02"} | {"found": true, "asset": {"asset_id": "M02", "title": "门店探访 vlog", "type": "video", "caption": "周末去了新开的城市旗舰店", "cover": "covers/m02.jpg", "copyright": "owned", "music": {"track": "Lofi Morning", "license": "verified"}, "submitter": "运营-周"}, "ok": true} | 读取素材元数据 |
+| 2 | `check_rules` | {"asset_id": "M02"} | {"found": true, "asset_id": "M02", "result": "pass", "issues": [], "ok": true} | 按审核规则检查素材 |
+| 3 | `lookup_license` | {"asset_id": "M02"} | {"asset_id": "M02", "track": "Lofi Morning", "status": "not_found", "ok": true} | 补查素材配乐授权状态 |
+| 4 | no_tool_call | — | 素材审核与发布排期结果：  - 素材 ID：M02   - 审核状态：需要验证   - 风险原因：素材配乐授权状态未找到   - 建议时段：无   - 待确认项：需要核实素材配乐授权状态  请核实素材 M02 的配乐授权状态。 | — |
+| 5 | `finish` | status=blocked | 护栏校正 1 处 | 素材 M02 审核状态为需要验证，配乐授权状态未找到，无法排期。 |
+
+## 护栏校正
+
+- M02：存在待确认事项，needs_confirmation 改为 true
+
+## 最终输出
+
+```json
+{
+  "items": [
+    {
+      "asset_id": "M02",
+      "review_status": "needs_verification",
+      "risk_reasons": [
+        "素材配乐授权状态未找到"
+      ],
+      "requested_slot": "2026-11-03 10:00",
+      "suggested_slot": null,
+      "slot_status": "not_scheduled",
+      "needs_confirmation": true,
+      "confirmation_question": "请处理：素材配乐授权状态未找到"
+    }
+  ],
+  "draft": {
+    "saved": false,
+    "draft_id": null,
+    "status": null,
+    "version": null,
+    "deduplicated": false,
+    "error": "未调用 save_draft"
+  },
+  "task_status": "blocked",
+  "summary": "素材 M02 审核状态为需要验证，配乐授权状态未找到，无法排期。",
+  "publish_status": "not_published"
+}
+```

@@ -1,0 +1,113 @@
+{
+  "title": "c01_normal：正常排期：无风险素材、要求时段空闲（运行 1/1）",
+  "request": {
+    "request_id": "REQ-C01",
+    "items": [
+      {
+        "asset_id": "M02",
+        "channel": "xiaohongshu",
+        "date": "2026-11-03",
+        "time": "10:00",
+        "time_rule": "flexible"
+      }
+    ]
+  },
+  "status": "completed",
+  "stop_reason": "model_finished",
+  "llm": "mock:scripted-policy",
+  "steps": 5,
+  "tool_calls": 4,
+  "final": {
+    "items": [
+      {
+        "asset_id": "M02",
+        "review_status": "approved",
+        "risk_reasons": [],
+        "requested_slot": "2026-11-03 10:00",
+        "suggested_slot": "2026-11-03 10:00",
+        "slot_status": "as_requested",
+        "needs_confirmation": false,
+        "confirmation_question": ""
+      }
+    ],
+    "draft": {
+      "saved": true,
+      "draft_id": "DRAFT-679aec8b",
+      "status": "draft",
+      "version": 1,
+      "deduplicated": false,
+      "error": null
+    },
+    "task_status": "completed",
+    "summary": "排期草稿 DRAFT-679aec8b 已保存，未发布；待确认 0 项。",
+    "publish_status": "not_published"
+  },
+  "guard_corrections": [],
+  "trace": [
+    {
+      "step": 1,
+      "type": "tool_call",
+      "tool": "read_asset",
+      "arguments": {
+        "asset_id": "M02"
+      },
+      "decision_note": "M02 尚未读取，先获取元数据",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset\": {\"asset_id\": \"M02\", \"title\": \"门店探访 vlog\", \"type\": \"video\", \"caption\": \"周末去了新开的城市旗舰店\", \"cover\": \"covers/m02.jpg\", \"copyright\": \"owned\", \"music\": {\"track\": \"Lofi Morning\", \"license\": \"verified\"}, \"submitter\": \"运营-周\"}, \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 2,
+      "type": "tool_call",
+      "tool": "check_rules",
+      "arguments": {
+        "asset_id": "M02"
+      },
+      "decision_note": "M02 元数据已读取，按 R01–R04 做规则检查",
+      "ok": true,
+      "observation": "{\"found\": true, \"asset_id\": \"M02\", \"result\": \"pass\", \"issues\": [], \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 3,
+      "type": "tool_call",
+      "tool": "query_slots",
+      "arguments": {
+        "channel": "xiaohongshu",
+        "date": "2026-11-03",
+        "time": "10:00"
+      },
+      "decision_note": "M02 审核通过，查询 2026-11-03 10:00 是否空闲",
+      "ok": true,
+      "observation": "{\"channel\": \"xiaohongshu\", \"date\": \"2026-11-03\", \"requested_time\": \"10:00\", \"available\": true, \"occupied_by\": null, \"free_slots_nearby\": [\"11:00\", \"09:00\", \"13:00\", \"14:00\"], \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 4,
+      "type": "tool_call",
+      "tool": "save_draft",
+      "arguments": {
+        "items": [
+          {
+            "asset_id": "M02",
+            "channel": "xiaohongshu",
+            "date": "2026-11-03",
+            "time": "10:00"
+          }
+        ]
+      },
+      "decision_note": "可排期素材已确定，保存为草稿",
+      "ok": true,
+      "observation": "{\"draft_id\": \"DRAFT-679aec8b\", \"status\": \"draft\", \"version\": 1, \"deduplicated\": false, \"items\": [{\"asset_id\": \"M02\", \"channel\": \"xiaohongshu\", \"slot\": \"2026-11-03 10:00\", \"requested_slot\": \"2026-11-03 10:00\", \"confirmed\": true}], \"note\": \"已保存为草稿；未发布\", \"ok\": true}",
+      "recovered_from_text": false
+    },
+    {
+      "step": 5,
+      "type": "finish",
+      "decision_note": "所有素材已有结论，提交结果",
+      "recovered_from_text": false,
+      "status": "completed",
+      "guard_corrections": []
+    }
+  ]
+}

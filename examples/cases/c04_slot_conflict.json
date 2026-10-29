@@ -1,0 +1,2 @@
+{"case_id": "c04_slot_conflict", "title": "时段冲突（参考实例）：M01 要求 18:00 已占用，19:00 空闲", "covers": ["时段冲突"],
+ "request": {"request_id": "REQ-C04", "items": [{"asset_id": "M01", "channel": "douyin", "date": "2026-11-03", "time": "18:00", "time_rule": "flexible"}]}}

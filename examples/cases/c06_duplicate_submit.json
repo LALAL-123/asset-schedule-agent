@@ -1,0 +1,5 @@
+{"case_id": "c06_duplicate_submit", "title": "重复提交：同一请求连续提交两次，只产生一份草稿", "covers": ["重复提交"],
+ "request": {"request_id": "REQ-C06", "items": [
+   {"asset_id": "M01", "channel": "douyin", "date": "2026-11-03", "time": "18:00", "time_rule": "flexible"},
+   {"asset_id": "M02", "channel": "xiaohongshu", "date": "2026-11-03", "time": "10:00", "time_rule": "flexible"}]},
+ "runs": [{}, {}]}

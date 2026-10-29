@@ -1,0 +1,3 @@
+{"case_id": "c07_save_failure", "title": "保存失败：草稿存储持续不可用，须明确返回失败", "covers": ["保存失败", "工具失败"],
+ "request": {"request_id": "REQ-C07", "items": [{"asset_id": "M02", "channel": "xiaohongshu", "date": "2026-11-03", "time": "10:00", "time_rule": "flexible"}]},
+ "faults": {"save_draft": {"mode": "always", "error": "草稿存储服务不可用（注入故障）"}}}

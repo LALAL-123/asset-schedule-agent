@@ -1,0 +1,2 @@
+{"case_id": "c01_normal", "title": "正常排期：无风险素材、要求时段空闲", "covers": ["正常排期"],
+ "request": {"request_id": "REQ-C01", "items": [{"asset_id": "M02", "channel": "xiaohongshu", "date": "2026-11-03", "time": "10:00", "time_rule": "flexible"}]}}

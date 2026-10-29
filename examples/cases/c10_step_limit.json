@@ -1,0 +1,6 @@
+{"case_id": "c10_step_limit", "title": "执行上限：3 轮内无法处理完 3 项素材，返回明确未完成", "covers": ["步数上限"],
+ "request": {"request_id": "REQ-C10", "items": [
+   {"asset_id": "M04", "channel": "douyin", "date": "2026-11-04", "time": "19:00", "time_rule": "flexible"},
+   {"asset_id": "M05", "channel": "douyin", "date": "2026-11-04", "time": "20:00", "time_rule": "flexible"},
+   {"asset_id": "M06", "channel": "xiaohongshu", "date": "2026-11-04", "time": "21:00", "time_rule": "flexible"}]},
+ "max_steps": 3}
